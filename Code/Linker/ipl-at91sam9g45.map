@@ -1,0 +1,194 @@
+Archive member included because of file (symbol)
+
+\libipl.a(image_setup.o)
+                              main.o (image_setup)
+\libipl.a(image_start.o)
+                              main.o (image_start)
+\libipl.a(jump.o)
+                              \libipl.a(image_start.o) (jump)
+\libipl.a(ser_dev.o)
+                              main.o (ser_putstr)
+\libipl.a(serat91sam9x.o)
+                              main.o (init_serat91sam9x)
+\libipl.a(spi_flash_at91sam9xx.o)
+                              main.o (image_copy)
+\libipl.a(copy.o)
+                              \libipl.a(image_setup.o) (copy)
+\libipl.a(image_scan.o)
+                              \libipl.a(image_setup.o) (startup_hdr)
+
+Allocating common symbols
+Common symbol       size              file
+
+scratch             0x200             \libipl.a(image_scan.o)
+startup_hdr         0x100             \libipl.a(image_scan.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+stack            0x0030e000         0x00002000
+ram              0x00304000         0x00006000
+rom              0x00300000         0x00004000
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+TARGET(elf32-littlearm)
+
+.text           0x00300000     0x171c
+ *(.text)
+ .text          0x00300000       0x3c _start.o
+                0x00300020                _start
+ .text          0x0030003c       0xb4 init.o
+                0x0030003c                system_clk_set
+                0x00300080                board_init
+ .text          0x003000f0      0x488 main.o
+                0x00300104                init_ddr2sdram
+                0x00300278                Power_LED_Off
+                0x003002b0                nand_flash_load_qnx
+                0x003000f0                init_spi
+                0x00300470                main
+                0x00300290                Power_LED_On
+                0x00300254                Setup_Power_LED
+ .text          0x00300578      0x430 nand.o
+                0x003008c4                nand_read_block
+                0x003007b0                nand_init
+                0x00300654                nand_write_cmd
+                0x00300774                nand_read_data
+                0x0030067c                nand_write_pageaddr
+                0x00300940                nand_probe
+                0x003006e4                nand_write_blkaddr
+                0x00300578                nand_wait_busy
+                0x0030088c                nand_read_id
+                0x00300738                nand_write_data
+                0x00300828                nand_read_page
+ .text          0x003009a8       0x70 \libipl.a(image_setup.o)
+                0x003009a8                image_setup
+ .text          0x00300a18       0x34 \libipl.a(image_start.o)
+                0x00300a18                image_start
+ .text          0x00300a4c        0x4 \libipl.a(jump.o)
+                0x00300a4c                jump
+ .text          0x00300a50      0x134 \libipl.a(ser_dev.o)
+                0x00300af4                ser_putstr
+                0x00300a50                init_serdev
+                0x00300a84                ser_getchar
+                0x00300a60                ser_poll
+                0x00300b30                ser_puthex
+                0x00300aa8                ser_putchar
+ .text          0x00300b84      0x114 \libipl.a(serat91sam9x.o)
+                0x00300c00                init_serat91sam9x
+ .text          0x00300c98      0x600 \libipl.a(spi_flash_at91sam9xx.o)
+                0x00300f28                image_copy
+                0x00300c98                spi_flash_terminate_read
+                0x00300d38                spi_flash_command
+                0x00300e80                init_sdram
+                0x00301074                spi_flash_probe
+                0x00300cd8                spi_send_command
+                0x003010ec                spi_flash_load_qnx
+                0x00300d50                spi_flash_read_page
+                0x00300cb8                spi_read_data
+                0x00300e00                spi_flash_read_id
+ .text          0x00301298       0x8c \libipl.a(copy.o)
+                0x00301298                copy_memory
+                0x00301310                copy
+ .text          0x00301324      0x204 \libipl.a(image_scan.o)
+                0x00301470                image_scan
+                0x00301360                small_checksum
+                0x00301324                zero_ok
+                0x003013a0                checksum
+ *(.rodata*)
+ .rodata.str1.4
+                0x00301528      0x11d main.o
+                                0x124 (size before relaxing)
+ *fill*         0x00301645        0x3 00
+ .rodata.str1.4
+                0x00301648       0x34 nand.o
+ .rodata        0x0030167c        0x4 nand.o
+ .rodata        0x00301680       0x14 \libipl.a(ser_dev.o)
+ .rodata        0x00301694        0xc \libipl.a(serat91sam9x.o)
+ .rodata.str1.4
+                0x003016a0       0x7c \libipl.a(spi_flash_at91sam9xx.o)
+                                 0xdc (size before relaxing)
+ *(.glue_7)
+ *(.glue_7t)
+                0x0030171c                _etext = .
+
+.data           0x00304000        0x0
+ *(.data)
+ .data          0x00304000        0x0 _start.o
+ .data          0x00304000        0x0 init.o
+ .data          0x00304000        0x0 main.o
+ .data          0x00304000        0x0 nand.o
+ .data          0x00304000        0x0 \libipl.a(image_setup.o)
+ .data          0x00304000        0x0 \libipl.a(image_start.o)
+ .data          0x00304000        0x0 \libipl.a(jump.o)
+ .data          0x00304000        0x0 \libipl.a(ser_dev.o)
+ .data          0x00304000        0x0 \libipl.a(serat91sam9x.o)
+ .data          0x00304000        0x0 \libipl.a(spi_flash_at91sam9xx.o)
+ .data          0x00304000        0x0 \libipl.a(copy.o)
+ .data          0x00304000        0x0 \libipl.a(image_scan.o)
+ *(.sdata)
+
+.bss            0x00304000      0x308
+ *(.bss)
+ .bss           0x00304000        0x0 _start.o
+ .bss           0x00304000        0x0 init.o
+ .bss           0x00304000        0x0 main.o
+ .bss           0x00304000        0x0 nand.o
+ .bss           0x00304000        0x0 \libipl.a(image_setup.o)
+ .bss           0x00304000        0x0 \libipl.a(image_start.o)
+ .bss           0x00304000        0x0 \libipl.a(jump.o)
+ .bss           0x00304000        0x4 \libipl.a(ser_dev.o)
+ .bss           0x00304004        0x4 \libipl.a(serat91sam9x.o)
+ .bss           0x00304008        0x0 \libipl.a(spi_flash_at91sam9xx.o)
+ .bss           0x00304008        0x0 \libipl.a(copy.o)
+ .bss           0x00304008        0x0 \libipl.a(image_scan.o)
+ *(.sbss)
+ COMMON         0x00304008      0x300 \libipl.a(image_scan.o)
+                0x00304008                scratch
+                0x00304208                startup_hdr
+LOAD _start.o
+LOAD init.o
+LOAD main.o
+LOAD nand.o
+LOAD \libipl.a
+OUTPUT(.../ipl-at91sam9g45 elf32-littlearm)
+
+.ARM.attributes
+                0x00000000       0x10
+ .ARM.attributes
+                0x00000000       0x10 _start.o
+ .ARM.attributes
+                0x00000010       0x10 init.o
+ .ARM.attributes
+                0x00000020       0x10 main.o
+ .ARM.attributes
+                0x00000030       0x10 nand.o
+ .ARM.attributes
+                0x00000040       0x10 \libipl.a(image_setup.o)
+ .ARM.attributes
+                0x00000050       0x10 \libipl.a(image_start.o)
+ .ARM.attributes
+                0x00000060       0x10 \libipl.a(jump.o)
+ .ARM.attributes
+                0x00000070       0x10 \libipl.a(ser_dev.o)
+ .ARM.attributes
+                0x00000080       0x10 \libipl.a(serat91sam9x.o)
+ .ARM.attributes
+                0x00000090       0x10 \libipl.a(spi_flash_at91sam9xx.o)
+ .ARM.attributes
+                0x000000a0       0x10 \libipl.a(copy.o)
+ .ARM.attributes
+                0x000000b0       0x10 \libipl.a(image_scan.o)
+
+.comment        0x00000000       0xb4
+ .comment       0x00000000       0x12 init.o
+ .comment       0x00000012       0x12 main.o
+ .comment       0x00000024       0x12 nand.o
+ .comment       0x00000036       0x12 \libipl.a(image_setup.o)
+ .comment       0x00000048       0x12 \libipl.a(image_start.o)
+ .comment       0x0000005a       0x12 \libipl.a(ser_dev.o)
+ .comment       0x0000006c       0x12 \libipl.a(serat91sam9x.o)
+ .comment       0x0000007e       0x12 \libipl.a(spi_flash_at91sam9xx.o)
+ .comment       0x00000090       0x12 \libipl.a(copy.o)
+ .comment       0x000000a2       0x12 \libipl.a(image_scan.o)
